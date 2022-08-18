@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://minjune8506.github.io/sitemap.xml
