@@ -205,3 +205,4 @@ jekyll_compose:
       date: YYYY-MM-DD HH:MM:SS +09:00
       categories: [TOP_CATEGORY, SUB_CATEGORY]
       tags: [TAG] # lowercase
+
