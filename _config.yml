@@ -80,7 +80,7 @@ theme_mode:
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: ./assets/img/jammanbo.jpg
+avatar: assets/img/jammanbo.jpg
 
 # boolean type, the global switch for TOC in posts.
 toc: true
@@ -117,6 +117,14 @@ pwa:
   enabled: true # the option for PWA feature
 
 paginate: 10
+
+jekyll_compose:
+  default_front_matter:
+    posts:
+      title:
+      date: YYYY-MM-DD HH:MM:SS +09:00
+      categories: [TOP_CATEGORY, SUB_CATEGORY]
+      tags: [TAG] # lowercase
 
 # ------------ The following options are not recommended to be modified ------------------
 
@@ -197,12 +205,3 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
-
-jekyll_compose:
-  default_front_matter:
-    posts:
-      title:
-      date: YYYY-MM-DD HH:MM:SS +09:00
-      categories: [TOP_CATEGORY, SUB_CATEGORY]
-      tags: [TAG] # lowercase
-
