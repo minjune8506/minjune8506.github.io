@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://eona1301.github.io/sitemap.xml
+Sitemap: https://minjune8506.github.io/sitemap.xml
