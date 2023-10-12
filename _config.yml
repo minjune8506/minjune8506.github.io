@@ -20,10 +20,10 @@ timezone: Asia/Seoul
 
 title: Minjun # the main title
 
-tagline: 大器晩成 # it will display as the sub-title
+tagline: insight # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
-  Minjun Kim's personal blog
+ Backend Developer
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: "https://minjune8506.github.io/"
@@ -41,10 +41,8 @@ social:
   email: minjune8506@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username # change to your twitter homepage
     - https://github.com/minjune8506 # change to your github homepage
     # Uncomment below to add more social links
-    # - https://www.facebook.com/username
     - https://www.linkedin.com/in/minjune8506
 
 google_site_verification: googlea537f49a99ca0ae4.html # fill in to your verification string
@@ -70,7 +68,7 @@ google_analytics:
 #     light  - Use the light color scheme
 #     dark   - Use the dark color scheme
 #
-theme_mode:
+theme_mode: 
 
 # The CDN endpoint for images.
 # Notice that once it is assigned, the CDN url
