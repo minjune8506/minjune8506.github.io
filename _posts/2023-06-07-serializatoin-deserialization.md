@@ -6,9 +6,7 @@ categories:
 - Java
 - Basic
 tags:
-- Java
-- Serializtion
-- Deserialization
+- Serialization
 ---
 ## Serialization / Deserialization
 

@@ -6,9 +6,7 @@ categories:
 - Java
 - Basic
 tags:
-- Java
-- Equals
-- HashCode
+- EqualsAndHashCode
 ---
 
 equals와 hashcode는 모든 Java 객체의 부모 객체인 Object 클래스에 정의되어 있다.
