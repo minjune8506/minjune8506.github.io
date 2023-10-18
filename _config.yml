@@ -124,6 +124,8 @@ jekyll_compose:
       categories: [TOP_CATEGORY, SUB_CATEGORY]
       tags: [TAG] # lowercase
 
+plugins:
+  - jekyll-sitemap
 # ------------ The following options are not recommended to be modified ------------------
 
 kramdown:
