@@ -141,6 +141,65 @@ public class PersonJavaBeans {
 - 빌더 객체를 만들어야 하므로 성능에 민감한 상황에는 문제가 될 수 있다.
 - 추가적인 코드가 필요하다. (매개변수가 많을때 사용하는 것을 추천한다.)
 
+```java
+public class Person {
+    private final String name;
+    private final int age;
+    private final String department;
+    private final boolean marriage;
+    private final boolean hasChild;
+
+    private Person(Builder builder) {
+        this.name = builder.name;
+        this.age = builder.age;
+        this.department = builder.department;
+        this.marriage = builder.marriage;
+        this.hasChild = builder.hasChild;
+    }
+
+    public static class Builder {
+        private final String name;
+        private final int age;
+        private String department;
+        private boolean marriage;
+        private boolean hasChild;
+
+        public Builder(String name, int age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        public Builder department(String department) {
+            this.department = department;
+            return this;
+        }
+
+        public Builder marriage(boolean marriage) {
+            this.marriage = marriage;
+            return this;
+        }
+
+        public Builder hasChild(boolean hasChild) {
+            this.hasChild = hasChild;
+            return this;
+        }
+
+        public Person build() {
+            return new Person(this);
+        }
+    }
+
+	public static void main(String[] args) {
+        Person person = new Person.Builder("test", 20)
+                                .department("dev")
+                                .marriage(true)
+                                .hasChild(false)
+                                .build();
+        System.out.println(person);
+    }
+}
+```
+
 ## 용어 정리
 
 **불변식(invariant)**
