@@ -3,7 +3,7 @@ layout: post
 title: 인스턴스화를 막으려거든 private 생성자를 사용하라
 date: YYYY-MM-DD HH:MM:SS +09:00
 categories:
-- Java
+- java
 - effective-java
 tags:
 - private constructor

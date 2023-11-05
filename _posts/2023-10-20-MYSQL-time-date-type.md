@@ -3,10 +3,10 @@ layout: post
 title: MySQL Time Data Type
 date: YYYY-MM-DD HH:MM:SS +09:00
 categories:
-  - Database
-  - MYSQL
+  - database
+  - mysql
 tags:
-  - Time Data Type
+  - time data type
 ---
 
 # MySQL Time Data Type

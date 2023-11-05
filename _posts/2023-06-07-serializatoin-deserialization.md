@@ -3,10 +3,10 @@ layout: post
 title: Serialization / Deserialization
 date: YYYY-MM-DD HH:MM:SS +09:00
 categories:
-- Java
-- Basic
+- java
 tags:
-- Serialization
+- serialization
+- deserialization
 ---
 ## Serialization / Deserialization
 

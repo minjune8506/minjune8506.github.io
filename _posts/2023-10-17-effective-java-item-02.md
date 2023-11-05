@@ -3,10 +3,10 @@ layout: post
 title: 생성자에 매개변수가 많다면 빌더를 고려하라
 date: YYYY-MM-DD HH:MM:SS +09:00
 categories:
-  - Java
+  - java
   - effective-java
 tags:
-  - Builder
+  - builder pattern
 ---
 
 # 생성자에 매개변수가 많다면 빌더를 고려하라

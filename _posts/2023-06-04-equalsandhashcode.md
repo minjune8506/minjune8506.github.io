@@ -3,10 +3,9 @@ layout: post
 title: Equals와 HashCode
 date: YYYY-MM-DD HH:MM:SS +09:00
 categories:
-- Java
-- Basic
+- java
 tags:
-- EqualsAndHashCode
+- equals and hashcode
 ---
 
 equals와 hashcode는 모든 Java 객체의 부모 객체인 Object 클래스에 정의되어 있다.

@@ -3,10 +3,10 @@ layout: post
 title: MySQL Money Data Type
 date: YYYY-MM-DD HH:MM:SS +09:00
 categories:
-  - Database
-  - MYSQL
+  - database
+  - mysql
 tags:
-  - Money Data Type
+  - money data type
 ---
 # MySQL Money Data Type
 
