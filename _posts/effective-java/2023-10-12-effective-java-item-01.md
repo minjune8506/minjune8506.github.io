@@ -2,6 +2,7 @@
 layout: post
 title: 생성자 대신 정적 팩터리 메서드를 고려하라
 date: YYYY-MM-DD HH:MM:SS +09:00
+author: minjun
 categories:
 - java
 - effective-java

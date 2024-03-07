@@ -2,6 +2,7 @@
 layout: post
 title: private 생성자나 열거 타입으로 싱글턴임을 보장하라
 date: YYYY-MM-DD HH:MM:SS +09:00
+author: minjun
 categories:
   - java
   - effective-java

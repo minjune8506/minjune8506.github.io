@@ -2,6 +2,7 @@
 layout: post
 title: 생성자에 매개변수가 많다면 빌더를 고려하라
 date: YYYY-MM-DD HH:MM:SS +09:00
+author: minjun
 categories:
   - java
   - effective-java

@@ -2,6 +2,7 @@
 layout: post
 title: AbstractAggregateRoot
 date: YYYY-MM-DD HH:MM:SS +09:00
+author: minjun
 categories:
 - JPA
 - Event

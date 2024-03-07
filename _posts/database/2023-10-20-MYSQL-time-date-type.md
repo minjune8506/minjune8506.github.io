@@ -2,6 +2,7 @@
 layout: post
 title: MySQL Time Data Type
 date: YYYY-MM-DD HH:MM:SS +09:00
+author: minjun
 categories:
   - database
   - mysql

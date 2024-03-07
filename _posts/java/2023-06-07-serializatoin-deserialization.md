@@ -2,6 +2,7 @@
 layout: post
 title: Serialization / Deserialization
 date: YYYY-MM-DD HH:MM:SS +09:00
+author: minjun
 categories:
 - java
 tags:
