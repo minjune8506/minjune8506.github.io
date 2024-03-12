@@ -1,6 +1,6 @@
 ---
 layout: post
-title: jpa save와 saveall 성능차이
+title: save와 saveAll의 성능 차이
 date: YYYY-MM-DD HH:MM:SS +09:00
 categories:
 - JPA
@@ -8,7 +8,7 @@ tags:
 - JPA
 ---
 
-# JPA의 save와 saveAll의 성능 차이
+# save와 saveAll의 성능 차이
 
 entity를 영속화시키기 위해 save()와 saveAll()을 사용할 수 있다.
 
