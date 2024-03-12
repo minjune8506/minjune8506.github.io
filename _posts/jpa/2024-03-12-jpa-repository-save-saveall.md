@@ -64,7 +64,7 @@ logging:
 ```
 ### save
 
-```log
+```
 Creating new transaction with name [com.example.demo.repository.SaveTest.save]: PROPAGATION_REQUIRED,ISOLATION_DEFAULT 
 Opened new EntityManager [SessionImpl(527783934<open>)] for JPA transaction
 Exposing JPA transaction as JDBC [org.springframework.orm.jpa.vendor.HibernateJpaDialect$HibernateConnectionHandle@71d2261e]
