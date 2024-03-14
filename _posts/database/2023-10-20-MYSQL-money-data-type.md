@@ -5,7 +5,6 @@ date: YYYY-MM-DD HH:MM:SS +09:00
 author: minjun
 categories:
   - database
-  - mysql
 tags:
   - money data type
 ---

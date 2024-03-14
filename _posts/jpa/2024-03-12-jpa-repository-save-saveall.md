@@ -3,9 +3,9 @@ layout: post
 title: save와 saveAll의 성능 차이
 date: YYYY-MM-DD HH:MM:SS +09:00
 categories:
-- JPA
+- jpa
 tags:
-- JPA
+- jpa
 ---
 
 # save와 saveAll의 성능 차이
