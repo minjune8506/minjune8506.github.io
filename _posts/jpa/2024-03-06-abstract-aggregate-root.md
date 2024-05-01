@@ -4,11 +4,9 @@ title: AbstractAggregateRoot
 date: YYYY-MM-DD HH:MM:SS +09:00
 author: minjun
 categories:
-- JPA
-- Event
+- jpa
 tags:
-- JPA
-- Event
+- jpa
 - AbstractAggregateRoot
 ---
 # AbstractAggregateRoot
