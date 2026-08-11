@@ -3,9 +3,8 @@ description: 굳이 여기까지 알 필요는 없지만, 재미로 밑바닥까
 url: "https://minjune8506.github.io"
 baseurl: ""
 
-author:
-  name: minjune8506
-  email: minjune8506@gmail.com
+author: minjune8506
+email: minjune8506@gmail.com
 
 theme: minima
 minima:
