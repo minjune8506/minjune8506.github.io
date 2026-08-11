@@ -1,0 +1,38 @@
+title: minjune8506's Tech Blog
+description: 개발하며 배운 것들을 기록하는 기술 블로그
+url: "https://minjune8506.github.io"
+baseurl: ""
+
+author:
+  name: minjune8506
+  email: minjune8506@gmail.com
+
+theme: minima
+minima:
+  skin: classic
+  social_links:
+    github: minjune8506
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+permalink: /posts/:year/:month/:day/:title/
+
+markdown: kramdown
+highlighter: rouge
+
+future: true
+
+paginate: 8
+paginate_path: "/page:num/"
+
+show_excerpts: true
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - vendor
+  - node_modules
