@@ -23,31 +23,31 @@ mermaid: true
 
 <figure class="post-figure">
 <svg viewBox="0 0 640 160" role="img" aria-label="시퀀스 넘버 축 위에서 데이터는 전송 완료(ACK 받음), 전송함-ACK 대기중, 전송 가능(window 안), 전송 불가(window 밖) 네 영역으로 나뉜다. 뒤의 두 영역을 합친 크기가 수신 윈도우다." xmlns="http://www.w3.org/2000/svg">
-  <line x1="160" y1="50" x2="160" y2="58" stroke="var(--tcp-accent)" stroke-width="1.5"/>
-  <line x1="440" y1="50" x2="440" y2="58" stroke="var(--tcp-accent)" stroke-width="1.5"/>
-  <line x1="160" y1="50" x2="440" y2="50" stroke="var(--tcp-accent)" stroke-width="1.5"/>
-  <text x="300" y="36" font-size="12" font-weight="600" fill="var(--tcp-accent)" font-family="sans-serif" text-anchor="middle">수신 윈도우 (rwnd = 320바이트)</text>
+  <line x1="180" y1="50" x2="180" y2="58" stroke="var(--tcp-accent)" stroke-width="1.5"/>
+  <line x1="460" y1="50" x2="460" y2="58" stroke="var(--tcp-accent)" stroke-width="1.5"/>
+  <line x1="180" y1="50" x2="460" y2="50" stroke="var(--tcp-accent)" stroke-width="1.5"/>
+  <text x="320" y="36" font-size="12" font-weight="600" fill="var(--tcp-accent)" font-family="sans-serif" text-anchor="middle">수신 윈도우 (rwnd = 320바이트)</text>
 
-  <rect x="40" y="60" width="120" height="50" fill="none" stroke="currentColor" stroke-width="1.5"/>
-  <text x="100" y="90" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">ACK 받음</text>
+  <rect x="40" y="60" width="140" height="50" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <text x="110" y="90" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">ACK 받음</text>
 
-  <rect x="160" y="60" width="120" height="50" fill="none" stroke="var(--tcp-accent)" stroke-width="2"/>
-  <text x="220" y="82" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">전송함</text>
-  <text x="220" y="96" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">ACK 대기중</text>
+  <rect x="180" y="60" width="140" height="50" fill="none" stroke="var(--tcp-accent)" stroke-width="2"/>
+  <text x="250" y="82" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">전송함</text>
+  <text x="250" y="96" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">ACK 대기중</text>
 
-  <rect x="280" y="60" width="160" height="50" fill="none" stroke="var(--tcp-accent)" stroke-width="2"/>
-  <text x="360" y="82" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">전송 가능</text>
-  <text x="360" y="96" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">(window 안, 아직 안 보냄)</text>
+  <rect x="320" y="60" width="140" height="50" fill="none" stroke="var(--tcp-accent)" stroke-width="2"/>
+  <text x="390" y="82" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">전송 가능</text>
+  <text x="390" y="96" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">(window 안, 아직 안 보냄)</text>
 
-  <rect x="440" y="60" width="160" height="50" fill="none" stroke="currentColor" stroke-width="1.5"/>
-  <text x="520" y="82" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">전송 불가</text>
-  <text x="520" y="96" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">(window 밖)</text>
+  <rect x="460" y="60" width="140" height="50" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <text x="530" y="82" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">전송 불가</text>
+  <text x="530" y="96" font-size="11" fill="currentColor" font-family="sans-serif" text-anchor="middle">(window 밖)</text>
 
   <text x="40" y="128" font-size="10" fill="currentColor" fill-opacity="0.6" font-family="sans-serif" text-anchor="middle">1000</text>
-  <text x="160" y="128" font-size="10" fill="currentColor" fill-opacity="0.6" font-family="sans-serif" text-anchor="middle">1120</text>
-  <text x="280" y="128" font-size="10" fill="currentColor" fill-opacity="0.6" font-family="sans-serif" text-anchor="middle">1280</text>
-  <text x="440" y="128" font-size="10" fill="currentColor" fill-opacity="0.6" font-family="sans-serif" text-anchor="middle">1440</text>
-  <text x="600" y="128" font-size="10" fill="currentColor" fill-opacity="0.6" font-family="sans-serif" text-anchor="middle">1600</text>
+  <text x="180" y="128" font-size="10" fill="currentColor" fill-opacity="0.6" font-family="sans-serif" text-anchor="middle">1160</text>
+  <text x="320" y="128" font-size="10" fill="currentColor" fill-opacity="0.6" font-family="sans-serif" text-anchor="middle">1320</text>
+  <text x="460" y="128" font-size="10" fill="currentColor" fill-opacity="0.6" font-family="sans-serif" text-anchor="middle">1480</text>
+  <text x="600" y="128" font-size="10" fill="currentColor" fill-opacity="0.6" font-family="sans-serif" text-anchor="middle">1640</text>
 </svg>
 <figcaption>송신자가 보는 시퀀스 넘버 축. ACK가 도착하면 왼쪽 두 영역의 경계가 오른쪽으로 밀리면서 "전송 가능" 영역이 새로 생긴다 — 이게 "슬라이딩" 윈도우라고 부르는 이유다.</figcaption>
 </figure>
