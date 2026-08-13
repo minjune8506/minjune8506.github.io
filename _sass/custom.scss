@@ -61,4 +61,20 @@
       border: 0;
     }
   }
+
+  .tangent {
+    border-left: 3px solid var(--tcp-accent);
+    padding: 0.1em 1.3em;
+    margin: 2.5em 0;
+    background: color-mix(in srgb, var(--tcp-accent) 5%, transparent);
+
+    > h2:first-child,
+    > h3:first-child {
+      margin-top: 0.6em;
+    }
+
+    > :last-child {
+      margin-bottom: 0.6em;
+    }
+  }
 }

@@ -50,13 +50,23 @@ stateDiagram-v2
     ESTABLISHED --> FIN_WAIT_1: 능동적 종료 (FIN 보냄)
     ESTABLISHED --> CLOSE_WAIT: 상대의 FIN 받음 (수동적 종료)
     FIN_WAIT_1 --> FIN_WAIT_2: ACK 받음
+    FIN_WAIT_1 --> CLOSING: 상대의 FIN 먼저 도착 (동시 종료)
     FIN_WAIT_2 --> TIME_WAIT: 상대의 FIN 받음
+    CLOSING --> TIME_WAIT: ACK 받음
     CLOSE_WAIT --> LAST_ACK: FIN 보냄
     LAST_ACK --> CLOSED: ACK 받음
     TIME_WAIT --> CLOSED: 2MSL 대기 후
 ```
 
 지금은 이 상태들의 이름과 대략적인 흐름만 눈에 익히면 충분합니다. 이 상태들이 실제 Linux 커널 소스 코드의 어느 부분에 대응하는지는 심화 단계에서 직접 코드를 따라가며 봅니다. `ss -tan`을 실행하면 지금 이 컴퓨터의 TCP 연결들이 이 상태들 중 어디에 있는지 실시간으로 볼 수 있습니다.
+
+<div class="tangent" markdown="1">
+## 곁다리: 양쪽이 동시에 FIN을 보내면 — CLOSING
+
+3편에서 양쪽이 동시에 SYN을 보내는 simultaneous open을 봤습니다. 종료에도 똑같은 종류의 동시성 케이스가 있습니다. 지금까지 본 종료는 한쪽이 먼저 FIN을 보내고 상대가 반응하는 "순차적" 시나리오였는데, 양쪽이 동시에 먼저 끊으려고 하면 어떻게 될까요?
+
+능동적으로 FIN을 보내고 FIN_WAIT_1에서 기다리는 도중, 상대의 ACK가 아니라 상대의 FIN이 먼저 도착하면(즉 상대도 동시에 끊으려던 중이었다면) 위 상태머신에 있는 **CLOSING** 상태로 전환됩니다. 거기서 자신이 보낸 FIN에 대한 ACK까지 마저 받으면 TIME_WAIT으로 넘어갑니다. 결과적으로 도착지는 똑같이 TIME_WAIT → CLOSED지만, 가는 경로가 하나 더 있는 셈입니다. 실무에서 마주칠 일은 거의 없지만, `ss -tan`에서 어쩌다 `CLOSING` 상태를 본다면 당황하지 않고 "아, 양쪽이 동시에 끊으려고 했구나"라고 알아볼 수 있으면 충분합니다.
+</div>
 
 ## TIME_WAIT — 왜 존재하고, 왜 자주 골칫거리가 되는가
 

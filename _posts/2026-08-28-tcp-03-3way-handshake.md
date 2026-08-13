@@ -62,6 +62,26 @@ sequenceDiagram
 - **옛 연결과 섞이지 않기 위해**: 같은 5-tuple로 새 연결을 맺을 때, 이전 연결에서 떠돌던 지연된 세그먼트가 새 연결의 데이터로 착각되지 않도록 시퀀스 넘버 범위를 다르게 시작합니다.
 - **보안**: ISN을 예측할 수 있으면, 공격자가 남의 연결에 끼어들어 마치 정상적인 ACK를 보낸 것처럼 위장할 수 있습니다(TCP 세션 하이재킹). 그래서 실제 구현은 ISN을 단순 증가가 아니라 암호학적으로 예측 어렵게 생성합니다.
 
+<div class="tangent" markdown="1">
+## 곁다리: 아주 드문 경우 — 양쪽이 동시에 SYN을 보내면
+
+지금까지는 한쪽(클라이언트)이 먼저 SYN을 보내는 경우만 다뤘습니다. 그런데 스펙상으로는 양쪽이 정확히 동시에 서로에게 SYN을 보내는 상황도 정의돼 있습니다 — **simultaneous open**이라고 부릅니다.
+
+```mermaid
+sequenceDiagram
+    participant A as Host A
+    participant B as Host B
+    A->>B: SYN, seq=100
+    B->>A: SYN, seq=500
+    Note over A,B: 서로의 SYN을 받고 SYN_RECEIVED로 전환
+    A->>B: ACK, ack=501
+    B->>A: ACK, ack=101
+    Note over A,B: 양쪽 다 ESTABLISHED
+```
+
+이 경우 한쪽이 SYN-ACK를 보내는 게 아니라, 양쪽 다 "SYN만" 보낸 뒤 서로의 SYN을 받고 각자 ACK를 보냅니다. 메시지가 4개라서 "3-way"라는 이름과는 안 맞아 보이지만, 두 호스트가 정확히 같은 타이밍에 서로에게 연결을 시도해야 하므로 실제로는 거의 일어나지 않습니다. 다만 3-way handshake가 유일한 연결 수립 경로는 아니라는 것, 그리고 TCP 상태머신이 이런 예외적인 경우까지 미리 정의해뒀다는 것 정도는 기억해둘 만합니다. (7편에서 종료 쪽의 비슷한 동시성 케이스도 나옵니다.)
+</div>
+
 ## SYN flood — 이 구조의 약점
 
 3-way handshake는 서버에게 대가를 요구합니다. SYN을 받고 SYN-ACK를 보낸 순간부터, 서버는 ACK가 올 때까지 그 연결을 "half-open" 상태로 backlog 큐에 붙잡아 둬야 합니다. 이 큐 크기는 유한합니다.
