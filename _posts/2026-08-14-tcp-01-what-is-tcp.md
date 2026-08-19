@@ -47,6 +47,85 @@ tier: 기본
 1. **TCP는 IP 위에서 동작한다.** IP는 주소만 책임지고 유실이나 순서 뒤바뀜은 신경 쓰지 않습니다. 그 위에서 "확실하게, 순서대로" 보내는 역할을 TCP가 맡습니다.
 2. **Transport 계층엔 TCP만 있는 게 아니다.** 같은 자리의 UDP는 같은 문제를 완전히 다른 방식으로 풉니다. 이 차이가 이 글의 핵심입니다.
 
+각 계층은 맡은 역할이 다르고, 하는 일도 다릅니다.
+
+- **Application 계층**: HTTP, DNS, SSH처럼 실제로 사람이나 프로그램이 관심 있는 데이터를 다룹니다. "무엇을 보낼지"를 결정하는 계층입니다.
+- **Transport 계층**: 그 데이터를 어떻게 실어 나를지 정합니다. TCP는 여기서 "순서대로, 빠짐없이"를 보장하고, UDP는 그런 보장 없이 그냥 던집니다.
+- **Internet 계층**: IP가 담당합니다. 출발지에서 목적지까지 어느 경로로 갈지(라우팅)만 신경 쓰고, 중간에 하나가 사라지든 순서가 뒤바뀌든 상관하지 않습니다.
+- **Link 계층**: 같은 네트워크 안에서 물리적으로 한 칸 옆(다음 라우터나 스위치)까지 데이터를 실어 보내는 계층입니다. Ethernet, Wi-Fi 같은 기술이 여기 속합니다.
+
+### 계층을 내려갈 때마다 이름이 바뀐다
+
+같은 데이터인데도 어느 계층을 지나느냐에 따라 부르는 이름이 다릅니다.
+
+Application 계층의 데이터가 Transport 계층으로 내려가면 TCP가 자기 헤더를 앞에 붙이는데, 이렇게 만들어진 덩어리를 **세그먼트(segment)**라고 부릅니다.
+
+세그먼트가 다시 Internet 계층으로 내려가면 IP가 출발지·목적지 IP 주소가 담긴 헤더를 또 붙이고, 그 결과물을 **패킷(packet)**이라고 부릅니다.
+
+패킷이 마지막으로 Link 계층으로 내려가면 Ethernet 같은 기술이 MAC 주소가 담긴 헤더(와 트레일러)를 붙이는데, 이걸 **프레임(frame)**이라고 부릅니다.
+
+<figure class="post-figure">
+<svg viewBox="0 0 640 310" role="img" aria-label="데이터가 Transport, Internet, Link 계층을 내려가며 각 계층의 헤더를 하나씩 덧붙인다. Transport 계층을 지나면 세그먼트, Internet 계층을 지나면 패킷, Link 계층을 지나면 프레임이 된다." xmlns="http://www.w3.org/2000/svg">
+  <text x="20" y="24" font-size="12" fill="currentColor" fill-opacity="0.6" font-family="sans-serif">Application 계층 — 데이터</text>
+  <rect x="20" y="34" width="560" height="30" fill="none" stroke="currentColor" stroke-width="1.5" rx="3"/>
+  <text x="300" y="54" font-size="12" fill="currentColor" font-family="sans-serif" text-anchor="middle">Data</text>
+
+  <text x="20" y="94" font-size="12" fill="var(--tcp-accent)" font-family="sans-serif">Transport 계층 — 세그먼트(segment)</text>
+  <rect x="20" y="104" width="90" height="30" fill="none" stroke="var(--tcp-accent)" stroke-width="2" rx="3"/>
+  <text x="65" y="124" font-size="11" fill="var(--tcp-accent)" font-family="sans-serif" text-anchor="middle">TCP 헤더</text>
+  <rect x="110" y="104" width="470" height="30" fill="none" stroke="currentColor" stroke-width="1.5" rx="3"/>
+  <text x="345" y="124" font-size="12" fill="currentColor" font-family="sans-serif" text-anchor="middle">Data</text>
+
+  <text x="20" y="164" font-size="12" fill="currentColor" fill-opacity="0.75" font-family="sans-serif">Internet 계층 — 패킷(packet)</text>
+  <rect x="20" y="174" width="70" height="30" fill="none" stroke="currentColor" stroke-width="1.5" rx="3"/>
+  <text x="55" y="194" font-size="10.5" fill="currentColor" font-family="sans-serif" text-anchor="middle">IP 헤더</text>
+  <rect x="90" y="174" width="90" height="30" fill="none" stroke="var(--tcp-accent)" stroke-width="2" rx="3"/>
+  <text x="135" y="194" font-size="11" fill="var(--tcp-accent)" font-family="sans-serif" text-anchor="middle">TCP 헤더</text>
+  <rect x="180" y="174" width="400" height="30" fill="none" stroke="currentColor" stroke-width="1.5" rx="3"/>
+  <text x="380" y="194" font-size="12" fill="currentColor" font-family="sans-serif" text-anchor="middle">Data</text>
+
+  <text x="20" y="234" font-size="12" fill="currentColor" fill-opacity="0.75" font-family="sans-serif">Link 계층 — 프레임(frame)</text>
+  <rect x="20" y="244" width="50" height="30" fill="none" stroke="currentColor" stroke-width="1.5" rx="3"/>
+  <text x="45" y="264" font-size="9.5" fill="currentColor" font-family="sans-serif" text-anchor="middle">Frame 헤더</text>
+  <rect x="70" y="244" width="70" height="30" fill="none" stroke="currentColor" stroke-width="1.5" rx="3"/>
+  <text x="105" y="264" font-size="10.5" fill="currentColor" font-family="sans-serif" text-anchor="middle">IP 헤더</text>
+  <rect x="140" y="244" width="90" height="30" fill="none" stroke="var(--tcp-accent)" stroke-width="2" rx="3"/>
+  <text x="185" y="264" font-size="11" fill="var(--tcp-accent)" font-family="sans-serif" text-anchor="middle">TCP 헤더</text>
+  <rect x="230" y="244" width="330" height="30" fill="none" stroke="currentColor" stroke-width="1.5" rx="3"/>
+  <text x="395" y="264" font-size="12" fill="currentColor" font-family="sans-serif" text-anchor="middle">Data</text>
+  <rect x="560" y="244" width="40" height="30" fill="none" stroke="currentColor" stroke-width="1.5" rx="3"/>
+  <text x="580" y="264" font-size="9.5" fill="currentColor" font-family="sans-serif" text-anchor="middle">트레일러</text>
+</svg>
+<figcaption>같은 데이터가 계층을 내려가며 헤더를 하나씩 껴입는다 — 이 과정을 캡슐화(encapsulation)라고 부르고, 그때그때 이름이 세그먼트 → 패킷 → 프레임으로 바뀐다.</figcaption>
+</figure>
+
+이 이름들은 서로 다른 데이터가 아니라, **같은 데이터가 헤더를 껴입어 가는 과정**에 붙는 이름입니다. 이 과정을 **캡슐화(encapsulation)**라고 부릅니다.
+
+수신 측에서는 반대로 프레임에서 시작해 헤더를 하나씩 벗겨내며(역캡슐화) 원래 데이터를 복원합니다.
+
+이 시리즈에서는 TCP를 다루기 때문에 주로 "세그먼트"라는 단어를 씁니다. 같은 데이터를 IP 계층에서는 패킷, Link 계층에서는 프레임이라고 부른다는 것만 기억해두면, 다른 글이나 문서에서 이 단어들을 만나도 헷갈리지 않습니다.
+
+## IP만으로는 왜 부족할까
+
+Internet 계층의 IP는 "최선을 다해 전달한다(best-effort delivery)"는 원칙으로 동작합니다. 말은 그럴듯하지만 실제로는 "보장은 못 하지만 일단 열심히는 보낸다"에 가깝습니다.
+
+구체적으로 IP가 보장하지 않는 것들을 나열하면 이렇습니다.
+
+- **유실**: 라우터의 버퍼가 가득 차면 IP는 그냥 패킷을 버립니다.
+- **순서**: 패킷마다 거치는 경로가 다를 수 있어서, 먼저 보낸 패킷이 나중에 도착할 수 있습니다.
+- **중복**: 네트워크 상황(재전송 경로, 라우팅 루프 등)에 따라 같은 패킷이 두 번 전달될 수도 있습니다.
+- **도착 확인**: 패킷을 보낸 쪽은 그게 실제로 도착했는지 IP 차원에서는 알 방법이 없습니다.
+
+이건 IP가 허술하게 설계돼서가 아니라, 의도된 설계입니다.
+
+만약 인터넷을 이루는 라우터 하나하나가 자기를 지나가는 모든 연결의 상태(누가 몇 번 패킷까지 받았는지, 뭘 재전송해야 하는지)를 일일이 기억해야 한다면, 라우터는 훨씬 무거워지고 지금 같은 규모로 인터넷이 확장되기도 어려웠을 겁니다.
+
+그래서 IP는 상태를 갖지 않고(stateless) "일단 최대한 빨리 전달만 한다"는 역할에 집중하고, 신뢰성이 얼마나 필요한지는 애플리케이션마다 다르니 그 판단과 구현을 양 끝단(end-to-end)에 맡깁니다. 네트워크 설계에서 이걸 **종단 간 원칙(end-to-end principle)**이라고 부릅니다.
+
+문제는 대부분의 애플리케이션이 "패킷 몇 개쯤 빠져도 괜찮아"라고 말할 수 없다는 점입니다. 웹 페이지 중간 바이트가 빠지면 페이지가 깨지고, 다운로드하는 파일 중간이 빠지면 파일이 손상됩니다.
+
+그런데 IP는 이런 걱정을 전혀 대신해주지 않습니다. 그래서 IP 위에서 유실을 감지해 재전송하고, 순서를 맞추고, 중복을 걸러내는 계층이 하나 더 필요한데 — 그 역할을 맡는 게 TCP입니다.
+
 ## "연결지향"과 "신뢰성"이 구체적으로 뭔가
 
 TCP를 설명할 때 항상 따라붙는 두 단어가 "연결지향(connection-oriented)"과 "신뢰성 있는(reliable)"입니다. 각각 구체적으로 무슨 뜻인지 뜯어보겠습니다.
@@ -128,7 +207,7 @@ TCP는 이 전부를 대신 해주는 하나의 "패키지"입니다. 사실 이
 
 앞으로 자주 나올 단어 세 개를 미리 정리합니다.
 
-- **세그먼트(segment)**: TCP가 주고받는 데이터 단위. (IP 계층에서는 이걸 "패킷", Link 계층에서는 "프레임"이라고 부릅니다. 같은 데이터를 계층마다 다르게 부르는 것뿐입니다.)
+- **세그먼트(segment)**: TCP가 주고받는 데이터 단위. 앞서 봤듯 같은 데이터가 IP 계층에서는 패킷, Link 계층에서는 프레임으로 이름만 바뀝니다.
 - **연결(connection)**: 3-way handshake로 맺어지고 4-way handshake로 끊어지는, 두 endpoint 사이의 상태. TCP의 모든 동작은 이 연결이 있다는 걸 전제로 합니다.
 - **스트림(stream)**: TCP가 애플리케이션에 제공하는 추상화. 애플리케이션 입장에서 TCP는 "세그먼트를 여러 개 주고받는 것"이 아니라 "끊김 없는 바이트의 흐름"처럼 보이고, 세그먼트 분할·재조립·재전송은 이 추상화 뒤에 전부 숨겨집니다.
 
