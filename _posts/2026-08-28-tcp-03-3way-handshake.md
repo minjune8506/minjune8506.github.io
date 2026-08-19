@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "03. 연결 수립 - 3-way handshake"
+title: "03. 3-way Handshake"
 date: 2026-08-28 09:00:00 +0900
 categories: [CS]
 tags: [뇌절, TCP, 기본]

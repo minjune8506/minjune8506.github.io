@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "02. 포트와 소켓 - 연결을 식별하는 방법"
+title: "02. Port와 Socket"
 date: 2026-08-21 09:00:00 +0900
 categories: [CS]
 tags: [뇌절, TCP, 기본]

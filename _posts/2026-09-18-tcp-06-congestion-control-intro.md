@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "06. 혼잡제어, 큰 그림"
+title: "06. Congestion Control"
 date: 2026-09-18 09:00:00 +0900
 categories: [CS]
 tags: [뇌절, TCP, 기본, 혼잡제어]

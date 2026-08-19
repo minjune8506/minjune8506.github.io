@@ -23,12 +23,12 @@ series: TCP
 
 ### 기본 — TCP를 쓰는 사람이면 충분한 레벨
 1. TCP란 무엇인가
-2. 포트와 소켓 — 연결을 식별하는 방법
-3. 연결 수립 — 3-way handshake
-4. 데이터 전송과 흐름제어
-5. 신뢰성 보장 — ACK와 재전송
-6. 혼잡제어, 큰 그림
-7. 연결 종료 — 4-way handshake와 TIME_WAIT
+2. Port와 Socket
+3. 3-way Handshake
+4. Flow Control
+5. Reliability
+6. Congestion Control
+7. 4-way Handshake
 
 ### 심화 — 기본편의 "왜"를 스펙과 커널 코드로 검증
 8. RFC 793 vs RFC 9293, 뭐가 왜 바뀌었나
