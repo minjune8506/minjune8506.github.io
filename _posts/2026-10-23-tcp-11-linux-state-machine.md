@@ -34,11 +34,15 @@ enum {
 };
 ```
 
-`TCP_CLOSING`이 정말로 있습니다 — 게다가 주석까지 `/* Now a valid state */`("이제는 유효한 상태")라고 달려 있는 게 흥미롭습니다. 7편에서 다룬 동시 종료 케이스가 한때는 이 상태머신에서 이등 시민이었다가 정식으로 편입됐다는 뉘앙스입니다. 덤으로 `TCP_NEW_SYN_RECV`라는, 기본편에서 못 본 상태도 하나 있습니다 — 이건 이번 글 뒤쪽 SYN cookie 섹션에서 다시 나옵니다.
+`TCP_CLOSING`이 정말로 있습니다 — 게다가 주석까지 `/* Now a valid state */`("이제는 유효한 상태")라고 달려 있는 게 흥미롭습니다. 7편에서 다룬 동시 종료 케이스가 한때는 이 상태머신에서 이등 시민이었다가 정식으로 편입됐다는 뉘앙스입니다.
+
+덤으로 `TCP_NEW_SYN_RECV`라는, 기본편에서 못 본 상태도 하나 있습니다 — 이건 이번 글 뒤쪽 SYN cookie 섹션에서 다시 나옵니다.
 
 ## tcp_rcv_state_process — 상태 전이의 심장부
 
-세그먼트가 도착할 때마다 호출되는 함수가 `tcp_rcv_state_process()`입니다(`tcp_input.c:6490`). 구조를 보면 첫 번째 `switch (sk->sk_state)`에서 `TCP_LISTEN`, `TCP_SYN_SENT`처럼 이른 단계를 먼저 처리하고, 그 아래 두 번째 `switch`에서 `TCP_SYN_RECV`, `TCP_FIN_WAIT1`, `TCP_CLOSING`, `TCP_LAST_ACK`를 처리합니다. 3편의 handshake 마지막 단계부터 봅니다.
+세그먼트가 도착할 때마다 호출되는 함수가 `tcp_rcv_state_process()`입니다(`tcp_input.c:6490`). 구조를 보면 첫 번째 `switch (sk->sk_state)`에서 `TCP_LISTEN`, `TCP_SYN_SENT`처럼 이른 단계를 먼저 처리하고, 그 아래 두 번째 `switch`에서 `TCP_SYN_RECV`, `TCP_FIN_WAIT1`, `TCP_CLOSING`, `TCP_LAST_ACK`를 처리합니다.
+
+3편의 handshake 마지막 단계부터 봅니다.
 
 ```c
 case TCP_SYN_RECV:
@@ -148,9 +152,13 @@ if (want_cookie) {
 }
 ```
 
-핵심은 마지막 세 줄입니다. **SYN-ACK를 보내자마자 `req` 구조체를 즉시 `reqsk_free()`로 지워버립니다.** 큐에 넣지도 않고, 타이머도 걸지 않습니다 — 이 연결 시도에 대해 커널은 정말로 **아무것도 기억하지 않습니다**. 3편에서 본 backlog 큐 자체를 아예 쓰지 않는 겁니다.
+핵심은 마지막 세 줄입니다. **SYN-ACK를 보내자마자 `req` 구조체를 즉시 `reqsk_free()`로 지워버립니다.**
 
-그럼 나중에 ACK가 왔을 때 이게 진짜 연결인지 어떻게 알까요? 답은 `isn = cookie_init_sequence(...)`에 있습니다. 이 ISN이 아무 값이나 무작위로 고른 게 아니라, `secure_tcp_syn_cookie()`(`syncookies.c`)에서 이렇게 계산됩니다.
+큐에 넣지도 않고, 타이머도 걸지 않습니다 — 이 연결 시도에 대해 커널은 정말로 **아무것도 기억하지 않습니다**. 3편에서 본 backlog 큐 자체를 아예 쓰지 않는 겁니다.
+
+그럼 나중에 ACK가 왔을 때 이게 진짜 연결인지 어떻게 알까요? 답은 `isn = cookie_init_sequence(...)`에 있습니다.
+
+이 ISN이 아무 값이나 무작위로 고른 게 아니라, `secure_tcp_syn_cookie()`(`syncookies.c`)에서 이렇게 계산됩니다.
 
 ```c
 /*
@@ -165,7 +173,9 @@ if (want_cookie) {
  */
 ```
 
-ISN 자체가 **5-tuple(2편에서 배운 그 5-tuple) + 클라이언트의 시퀀스 넘버 + 시간(분 단위 카운터) + MSS 정보**를 커널만 아는 비밀키로 해시한 값입니다. 상태를 어딘가에 저장하는 대신, 상태를 ISN이라는 32비트 안에 압축해서 상대방에게 통째로 돌려보내는 셈입니다. 나중에 ACK가 돌아오면, 그 ACK 번호(-1)를 가지고 같은 해시를 다시 계산해서 일치하는지만 확인하면 됩니다 — 대조할 저장된 상태가 필요 없습니다.
+ISN 자체가 **5-tuple(2편에서 배운 그 5-tuple) + 클라이언트의 시퀀스 넘버 + 시간(분 단위 카운터) + MSS 정보**를 커널만 아는 비밀키로 해시한 값입니다. 상태를 어딘가에 저장하는 대신, 상태를 ISN이라는 32비트 안에 압축해서 상대방에게 통째로 돌려보내는 셈입니다.
+
+나중에 ACK가 돌아오면, 그 ACK 번호(-1)를 가지고 같은 해시를 다시 계산해서 일치하는지만 확인하면 됩니다 — 대조할 저장된 상태가 필요 없습니다.
 
 ```mermaid
 sequenceDiagram
