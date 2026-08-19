@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "TCP란 무엇인가"
+title: "01. TCP란 무엇인가"
 date: 2026-08-14 09:00:00 +0900
 categories: [CS]
 tags: [뇌절, TCP, 기본]

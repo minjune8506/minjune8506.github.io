@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "TCP 헤더 32비트 완전분해"
+title: "09. TCP 헤더 32비트 완전분해"
 date: 2026-10-09 09:00:00 +0900
 categories: [CS]
 tags: [뇌절, TCP, 심화, RFC]

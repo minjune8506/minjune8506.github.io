@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "혼잡제어: Reno vs Cubic vs BBR 커널 코드 비교"
+title: "13. 혼잡제어: Reno vs Cubic vs BBR 커널 코드 비교"
 date: 2026-11-06 09:00:00 +0900
 categories: [CS]
 tags: [뇌절, TCP, 심화, 커널, 혼잡제어]

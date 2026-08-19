@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "신뢰성 보장 - ACK와 재전송"
+title: "05. 신뢰성 보장 - ACK와 재전송"
 date: 2026-09-11 09:00:00 +0900
 categories: [CS]
 tags: [뇌절, TCP, 기본]

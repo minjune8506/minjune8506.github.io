@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "연결 종료 - 4-way handshake와 TIME_WAIT"
+title: "07. 연결 종료 - 4-way handshake와 TIME_WAIT"
 date: 2026-09-25 09:00:00 +0900
 categories: [CS]
 tags: [뇌절, TCP, 기본]

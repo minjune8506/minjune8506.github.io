@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "소켓 버퍼·재전송 큐·RTO 계산의 실제 구현"
+title: "12. 소켓 버퍼·재전송 큐·RTO 계산의 실제 구현"
 date: 2026-10-30 09:00:00 +0900
 categories: [CS]
 tags: [뇌절, TCP, 심화, 커널, Linux]
