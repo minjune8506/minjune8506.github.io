@@ -1,6 +1,6 @@
 ---
 layout: page
-title: 카테고리
+title: Category
 permalink: /categories/
 ---
 
