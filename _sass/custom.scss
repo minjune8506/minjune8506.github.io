@@ -62,6 +62,28 @@
     }
   }
 
+  .cat-count {
+    font-weight: 400;
+    color: $grey-color;
+    font-size: $small-font-size;
+  }
+
+  .cat-series {
+    margin: 1em 0 2em 1em;
+    padding-left: 1em;
+    border-left: 2px solid $grey-color-light;
+
+    h3 {
+      margin-bottom: 0.4em;
+    }
+  }
+
+  .cat-tier {
+    margin: 1em 0 0.3em;
+    font-weight: 600;
+    color: var(--tcp-accent);
+  }
+
   .tangent {
     border-left: 3px solid var(--tcp-accent);
     padding: 0.1em 1.3em;

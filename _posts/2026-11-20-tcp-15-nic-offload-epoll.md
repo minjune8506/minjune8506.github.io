@@ -2,7 +2,7 @@
 layout: post
 title: "NIC 오프로딩(TSO/GRO)과 epoll 내부 구현"
 date: 2026-11-20 09:00:00 +0900
-categories: [TCP]
+categories: [CS]
 tags: [뇌절, TCP, 심화, OS, 하드웨어]
 series: TCP
 tier: 심화

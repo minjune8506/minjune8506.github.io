@@ -2,7 +2,7 @@
 layout: post
 title: "혼잡제어, 큰 그림"
 date: 2026-09-18 09:00:00 +0900
-categories: [TCP]
+categories: [CS]
 tags: [뇌절, TCP, 기본, 혼잡제어]
 series: TCP
 tier: 기본

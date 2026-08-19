@@ -2,7 +2,7 @@
 layout: post
 title: "포트와 소켓 - 연결을 식별하는 방법"
 date: 2026-08-21 09:00:00 +0900
-categories: [TCP]
+categories: [CS]
 tags: [뇌절, TCP, 기본]
 series: TCP
 tier: 기본

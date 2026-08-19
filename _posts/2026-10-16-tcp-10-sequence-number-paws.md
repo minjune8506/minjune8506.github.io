@@ -2,7 +2,7 @@
 layout: post
 title: "시퀀스 넘버 wraparound과 PAWS"
 date: 2026-10-16 09:00:00 +0900
-categories: [TCP]
+categories: [CS]
 tags: [뇌절, TCP, 심화, RFC]
 series: TCP
 tier: 심화

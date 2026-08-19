@@ -19,6 +19,10 @@ plugins:
 
 permalink: /posts/:year/:month/:day/:title/
 
+header_pages:
+  - categories.md
+  - about.md
+
 markdown: kramdown
 highlighter: rouge
 

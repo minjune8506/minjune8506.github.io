@@ -2,7 +2,7 @@
 layout: post
 title: "Linux TCP 상태머신, 소스로 따라가기"
 date: 2026-10-23 09:00:00 +0900
-categories: [TCP]
+categories: [CS]
 tags: [뇌절, TCP, 심화, 커널, Linux]
 series: TCP
 tier: 심화

@@ -2,7 +2,7 @@
 layout: post
 title: "strace로 소켓 syscall 흐름 추적하기"
 date: 2026-11-13 09:00:00 +0900
-categories: [TCP]
+categories: [CS]
 tags: [뇌절, TCP, 심화, OS, syscall]
 series: TCP
 tier: 심화

@@ -2,8 +2,9 @@
 layout: post
 title: "TCP 뇌절 시리즈: 로드맵"
 date: 2026-08-13 10:00:00 +0900
-categories: [TCP]
+categories: [CS]
 tags: [뇌절, 로드맵, TCP]
+series: TCP
 ---
 
 **뇌절**의 첫 시리즈 주제는 TCP입니다. 다만 "뇌절"이라고 해서 처음부터 커널 코드나 RFC로 들어가지는 않습니다.
